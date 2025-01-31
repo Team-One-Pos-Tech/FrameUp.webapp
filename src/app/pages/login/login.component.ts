@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  constructor(private router: Router) { }
 
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -21,5 +23,7 @@ export class LoginComponent {
     console.log('Form submitted');
     console.log('username: ', username);
     console.log('password: ', password);
+
+    this.router.navigate(['/']);
   }
 }
