@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "openapi": "openapi-generator-cli generate -g typescript-fetch -i http://localhost:5000/swagger/v1/swagger.json -o ./src/app/infra/snackhub-api"
+    "openapi-order": "openapi-generator-cli generate -g typescript-fetch -i http://localhost:5688/swagger/v1/swagger.json -o ./src/app/infra/order-api",
+    "openapi-identity": "openapi-generator-cli generate -g typescript-fetch -i http://localhost:5488/swagger/v1/swagger.json -o ./src/app/infra/order-api"
   },
   "private": true,
   "dependencies": {
