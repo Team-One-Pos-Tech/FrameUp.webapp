@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "snackhub.app": {
+    "frameup.app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/snackhub.app",
+            "outputPath": "dist/frameup.app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "snackhub.app:build:production"
+              "buildTarget": "frameup.app:build:production"
             },
             "development": {
-              "buildTarget": "snackhub.app:build:development"
+              "buildTarget": "frameup.app:build:development"
             }
           },
           "defaultConfiguration": "development"

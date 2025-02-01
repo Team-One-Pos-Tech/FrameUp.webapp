@@ -11,5 +11,8 @@
   ],
   "include": [
     "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "src/app/infra/order-api/runtime.ts" // Adicione o caminho do arquivo que você deseja excluir
   ]
 }
