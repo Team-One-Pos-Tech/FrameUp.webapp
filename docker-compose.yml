@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  frame-up-webapp:
+    image: frame-up-webapp
+    container_name: frame-up-webapp
+    restart: always
+    build:
+      context: .
+      dockerfile: ./src/Dockerfile
+    ports:
+      - "42048:80"
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge

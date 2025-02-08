@@ -1,4 +1,3 @@
-import { environment } from "../../environment";
 import { Configuration } from "../infra/identity-api";
 import AuthenticationService from "./authentication.service";
 
