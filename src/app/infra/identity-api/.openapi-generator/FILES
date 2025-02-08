@@ -1,0 +1,16 @@
+apis/AuthenticationApi.ts
+apis/ClientApi.ts
+apis/EmailApi.ts
+apis/index.ts
+index.ts
+models/Cpf.ts
+models/GetClientResponse.ts
+models/LoginModel.ts
+models/Notification.ts
+models/NotifyOrderUpdateStatusRequest.ts
+models/ProblemDetails.ts
+models/RegisterClientRequest.ts
+models/RegisterClientResponse.ts
+models/SignInResponse.ts
+models/index.ts
+runtime.ts

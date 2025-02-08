@@ -1,0 +1,32 @@
+<table class="min-w-full bg-white border border-gray-200">
+    <thead>
+        <tr class="w-full bg-gray-100 border-b">
+            <th class="py-2 px-4 text-left">ID</th>
+            <th class="py-2 px-4 text-left">Status</th>
+            <th class="py-2 px-4 text-left">Export Resolution</th>
+            <th class="py-2 px-4 text-left">Capture Interval</th>
+            <th class="py-2 px-4 text-left">Packages</th>
+            <th class="py-2 px-4 text-left">Videos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of orderModelList" class="border-b hover:bg-gray-50">
+            <td class="py-2 px-4">{{ order.id }}</td>
+            <td class="py-2 px-4">{{ order.status }}</td>
+            <td class="py-2 px-4">{{ order.exportResolution }}</td>
+            <td class="py-2 px-4">{{ order.captureInterval }} seg</td>
+            <td class="py-2 px-4">
+                <ul class="list-disc pl-5">
+                    <a class="hover:underline text-blue-500" [href]="package.uri" target="_blank" *ngFor="let package of order.packages">{{ package.fileName }}</a>
+                </ul>
+            </td>
+            <td class="py-2 px-4">
+                <ul class="list-disc pl-5">
+                    <li *ngFor="let video of order.videos">
+                        {{ video.name }} ({{ video.contentType }}, {{ video.size }} bytes)
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
