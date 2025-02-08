@@ -4,7 +4,7 @@ import ApiClientFactory from "../../services/api.client.factory";
 import { environment } from "../../../environment";
 import { RegisterClientRequest, SignInResponse } from "../identity-api";
 import { GetProcessingOrderResponse, OrderApi } from "../order-api";
-import Order, { Video } from "../../entities/order.model";
+import Order, { Package, Video } from "../../entities/order.model";
 import AuthenticationService from "../../services/authentication.service";
 
 @Injectable({
@@ -34,7 +34,7 @@ export default class OrderRepository {
             )),
             order.exportResolution!,
             order.captureInterval!,
-            []
+            order.packages!.map((pkg) => new Package(pkg.fileName!, pkg.uri!))
         ));
    }
 }

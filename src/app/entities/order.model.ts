@@ -6,7 +6,7 @@ export default class Order {
     videos: Video[];
     exportResolution: string;
     captureInterval: number;
-    packages: any[];
+    packages: Package[];
 
     constructor(
         id: string,
@@ -15,7 +15,7 @@ export default class Order {
         videos: Video[],
         exportResolution: string,
         captureInterval: number,
-        packages: any[],
+        packages: Package[],
     ) {
         this.id = id;
         this.status = status;
@@ -38,5 +38,15 @@ export class Video {
         this.name = name;
         this.contentType = contentType;
         this.size = size;
+    }
+}
+
+export class Package {
+    fileName: string;
+    uri: string;
+
+    constructor(fileName: string, uri: string) {
+        this.fileName = fileName;
+        this.uri = uri;
     }
 }
