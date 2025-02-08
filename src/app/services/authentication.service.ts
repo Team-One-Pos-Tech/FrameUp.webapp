@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 
 export interface CurrentUser {
-    id: number;
+    id: string;
+    name: string;
     username: string;
     email: string;
     apiKey: string;

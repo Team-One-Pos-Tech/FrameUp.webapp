@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import AuthRepository, { LoginModel } from '../../infra/repositories/auth.repository';
 import AuthenticationService, { CurrentUser } from '../../services/authentication.service';
+import ClientRepository from '../../infra/repositories/client.repository';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,12 @@ export class LoginComponent {
   constructor(
     private router: Router, 
     private authRepository: AuthRepository,
+    private clientRepository: ClientRepository,
     private authService: AuthenticationService
   ) { }
 
   loginForm = new FormGroup({
-    username: new FormControl(''),
+    username: new FormControl('246.408.220-14'),
   });
 
   async onSubmit() {
@@ -28,9 +30,14 @@ export class LoginComponent {
 
     if (response.isValid) {
 
+      var userInfo = await this.clientRepository.getUserInfo(username);
+
       this.authService.setCurrentUser(<CurrentUser>{
         username: username,
-        apiKey: response.apiKey
+        apiKey: response.apiKey,
+        name: userInfo.name,
+        email: userInfo.email,
+        id: userInfo.id
       });
 
       this.router.navigate(['/']);
