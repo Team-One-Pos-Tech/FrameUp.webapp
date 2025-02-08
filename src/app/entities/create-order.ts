@@ -1,4 +1,4 @@
-export default class CreateOrder {
+export default class CreateOrderRequest {
     captureInterval?: number;
     exportResolution?: ResolutionTypes;
     videos: File[] = [];
