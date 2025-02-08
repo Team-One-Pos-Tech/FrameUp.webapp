@@ -3,7 +3,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './services/auth.guard';
 import { SignupComponent } from './pages/signup/signup.component';
-import { CreateOrderComponent } from './components/create-order/create-order.component';
+import { CreateOrderComponent } from './pages/create-order/create-order.component';
 
 export const routes: Routes = [
     {
@@ -19,7 +19,8 @@ export const routes: Routes = [
     {
         path: 'create-order',
         component: CreateOrderComponent,
-        title: 'Create Order Page'
+        title: 'Create Order Page',
+        canActivate: [AuthGuard]
     },
     {
         path: '',

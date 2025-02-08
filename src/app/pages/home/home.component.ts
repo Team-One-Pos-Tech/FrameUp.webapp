@@ -4,12 +4,13 @@ import OrderRepository from '../../infra/repositories/order.repository';
 import Order from '../../entities/order.model';
 import { OrderListComponent } from '../../components/order-list/order-list.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [OrderListComponent, CommonModule]
+  imports: [OrderListComponent, CommonModule, RouterModule]
 })
 export class HomeComponent implements OnInit {
   currentUser: CurrentUser | null = null;
