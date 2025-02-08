@@ -4,12 +4,13 @@ import CreateOrderRequest, { ResolutionTypes } from '../../entities/create-order
 import { CommonModule } from '@angular/common';
 import OrderRepository from '../../infra/repositories/order.repository';
 import { Router, RouterModule } from '@angular/router';
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
   selector: 'app-create-order',
   templateUrl: './create-order.component.html',
   styleUrls: ['./create-order.component.scss'],
-  imports: [ReactiveFormsModule, CommonModule, RouterModule]
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, HeaderComponent]
 })
 export class CreateOrderComponent {
   constructor(private orderRepository: OrderRepository, private router: Router) { }

@@ -1,0 +1,16 @@
+<div *ngIf="currentUser"
+    class="bg-gray-800 text-white p-4 shadow-md mb-4 sticky top-0 z-10 flex justify-between items-center">
+    <h1 class="font-semibold">Welcome, {{ currentUser!.name }}!</h1>
+
+    <div>
+        <h1 routerLink="/" class="text-3xl font-semibold cursor-pointer">
+            Frame Up
+        </h1>
+    </div>
+
+    <div class="flex items-center space-x-1">
+        <button routerLink="/create-order" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Create Order
+        </button>
+    </div>
+</div>
