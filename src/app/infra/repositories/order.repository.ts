@@ -5,6 +5,7 @@ import { environment } from "../../../environment";
 import { RegisterClientRequest, SignInResponse } from "../identity-api";
 import { GetProcessingOrderResponse, OrderApi } from "../order-api";
 import Order, { Video } from "../../entities/order.model";
+import AuthenticationService from "../../services/authentication.service";
 
 @Injectable({
     providedIn: 'root'
@@ -12,8 +13,8 @@ import Order, { Video } from "../../entities/order.model";
 export default class OrderRepository {
     apiFactory: ApiClientFactory<OrderApi>;
 
-    constructor() {
-        this.apiFactory = new ApiClientFactory<OrderApi>(OrderApi);
+    constructor(private authenticationService: AuthenticationService) {
+        this.apiFactory = new ApiClientFactory<OrderApi>(OrderApi, authenticationService);
     }
 
    async getOrders(): Promise<Order[]> {

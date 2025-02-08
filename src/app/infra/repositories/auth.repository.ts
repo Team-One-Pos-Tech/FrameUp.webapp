@@ -3,6 +3,7 @@ import { ApiAuthenticationV1SigninPostRequest, ApiAuthenticationV1SignupPostRequ
 import ApiClientFactory from "../../services/api.client.factory";
 import { environment } from "../../../environment";
 import { RegisterClientRequest, SignInResponse } from "../identity-api";
+import AuthenticationService from "../../services/authentication.service";
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +11,8 @@ import { RegisterClientRequest, SignInResponse } from "../identity-api";
 export default class AuthRepository {
     apiFactory: ApiClientFactory<AuthenticationApi>;
 
-    constructor() {
-        this.apiFactory = new ApiClientFactory<AuthenticationApi>(AuthenticationApi);
+    constructor(authenticationService: AuthenticationService) {
+        this.apiFactory = new ApiClientFactory<AuthenticationApi>(AuthenticationApi, authenticationService);
     }
 
     async signin(loginModel: LoginModel): Promise<AuthResponse> {

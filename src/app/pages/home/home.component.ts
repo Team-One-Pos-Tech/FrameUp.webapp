@@ -3,12 +3,13 @@ import AuthenticationService, { CurrentUser } from '../../services/authenticatio
 import OrderRepository from '../../infra/repositories/order.repository';
 import Order from '../../entities/order.model';
 import { OrderListComponent } from '../../components/order-list/order-list.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [OrderListComponent]
+  imports: [OrderListComponent, CommonModule]
 })
 export class HomeComponent implements OnInit {
   currentUser: CurrentUser | null = null;
@@ -26,6 +27,6 @@ export class HomeComponent implements OnInit {
   }
 
   async loadOrders() {
-    let orders = await this.orderRepository.getOrders();
+    this.orderList = await this.orderRepository.getOrders();
   }
 }

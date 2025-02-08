@@ -4,12 +4,10 @@ import AuthenticationService from "./authentication.service";
 
 
 export default class ApiClientFactory<T> {
-    private authenticationService: AuthenticationService;
     private constructorFn : any;
   
-    constructor(constructorFn : any) {
+    constructor(constructorFn : any, private authenticationService: AuthenticationService) {
         this.constructorFn = constructorFn;
-        this.authenticationService = new AuthenticationService();
     }
   
     async createInstance(baseUrl: string) : Promise<T> {
