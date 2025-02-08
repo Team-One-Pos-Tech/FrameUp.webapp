@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import AuthService, { LoginModel } from '../../services/auth.service';
+import AuthRepository, { LoginModel } from '../../infra/repositories/auth.repository';
 
 @Component({
   selector: 'app-login',
@@ -10,20 +10,21 @@ import AuthService, { LoginModel } from '../../services/auth.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authRepository: AuthRepository) { }
 
   loginForm = new FormGroup({
     username: new FormControl(''),
   });
 
-  onSubmit() {
+  async onSubmit() {
     const username = this.loginForm.value.username;
 
-    console.log('Form submitted');
-    console.log('username: ', username);
+    var response = await this.authRepository.signin(new LoginModel(username as string));
 
-    this.authService.signin(new LoginModel(username as string));
+    if (response.isValid) {
+      this.router.navigate(['/home']);
+    }
 
-    this.router.navigate(['/']);
+    alert(response.message);
   }
 }

@@ -16,13 +16,22 @@
 import * as runtime from '../runtime';
 import type {
   LoginModel,
+  ProblemDetails,
   RegisterClientRequest,
+  RegisterClientResponse,
+  SignInResponse,
 } from '../models/index';
 import {
     LoginModelFromJSON,
     LoginModelToJSON,
+    ProblemDetailsFromJSON,
+    ProblemDetailsToJSON,
     RegisterClientRequestFromJSON,
     RegisterClientRequestToJSON,
+    RegisterClientResponseFromJSON,
+    RegisterClientResponseToJSON,
+    SignInResponseFromJSON,
+    SignInResponseToJSON,
 } from '../models/index';
 
 export interface ApiAuthenticationV1SigninPostRequest {
@@ -40,7 +49,7 @@ export class AuthenticationApi extends runtime.BaseAPI {
 
     /**
      */
-    async apiAuthenticationV1SigninPostRaw(requestParameters: ApiAuthenticationV1SigninPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async apiAuthenticationV1SigninPostRaw(requestParameters: ApiAuthenticationV1SigninPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SignInResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -55,18 +64,19 @@ export class AuthenticationApi extends runtime.BaseAPI {
             body: LoginModelToJSON(requestParameters['loginModel']),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => SignInResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async apiAuthenticationV1SigninPost(requestParameters: ApiAuthenticationV1SigninPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.apiAuthenticationV1SigninPostRaw(requestParameters, initOverrides);
+    async apiAuthenticationV1SigninPost(requestParameters: ApiAuthenticationV1SigninPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SignInResponse> {
+        const response = await this.apiAuthenticationV1SigninPostRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
      */
-    async apiAuthenticationV1SignupPostRaw(requestParameters: ApiAuthenticationV1SignupPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async apiAuthenticationV1SignupPostRaw(requestParameters: ApiAuthenticationV1SignupPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RegisterClientResponse>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -81,13 +91,14 @@ export class AuthenticationApi extends runtime.BaseAPI {
             body: RegisterClientRequestToJSON(requestParameters['registerClientRequest']),
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => RegisterClientResponseFromJSON(jsonValue));
     }
 
     /**
      */
-    async apiAuthenticationV1SignupPost(requestParameters: ApiAuthenticationV1SignupPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.apiAuthenticationV1SignupPostRaw(requestParameters, initOverrides);
+    async apiAuthenticationV1SignupPost(requestParameters: ApiAuthenticationV1SignupPostRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RegisterClientResponse> {
+        const response = await this.apiAuthenticationV1SignupPostRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
 }

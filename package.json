@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "openapi-order": "openapi-generator-cli generate -g typescript-fetch -i http://localhost:5688/swagger/v1/swagger.json -o ./src/app/infra/order-api",
-    "openapi-identity": "openapi-generator-cli generate -g typescript-fetch -i http://localhost:5488/swagger/v1/swagger.json -o ./src/app/infra/order-api"
+    "openapi-identity": "openapi-generator-cli generate -g typescript-fetch -i http://localhost:5488/swagger/v1/swagger.json -o ./src/app/infra/identity-api"
   },
   "private": true,
   "dependencies": {
