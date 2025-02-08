@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { ApiAuthenticationV1SigninPostRequest, ApiAuthenticationV1SignupPostRequest, AuthenticationApi } from "../identity-api/apis/AuthenticationApi";
 import ApiClientFactory from "../../services/api.client.factory";
-import { environment } from "../../../environment";
 import { RegisterClientRequest, SignInResponse } from "../identity-api";
 import { GetProcessingOrderResponse, OrderApi, OrderPostRequest } from "../order-api";
 import Order, { Package, Video } from "../../entities/order.model";
 import AuthenticationService from "../../services/authentication.service";
 import CreateOrderRequest from "../../entities/create-order";
+import { environment } from "../../../environments/environment.development";
 
 @Injectable({
     providedIn: 'root'

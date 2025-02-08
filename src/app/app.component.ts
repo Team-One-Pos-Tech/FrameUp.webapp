@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { environment } from '../environment';
+import { environment } from '../environments/environment.development';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,6 @@ import { environment } from '../environment';
 })
 export class AppComponent {
   constructor() {
-    console.log(environment.production);
+    console.log(`${environment.production ? 'Production' : 'Development'} mode`);
   }
 }
