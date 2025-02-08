@@ -1,9 +1,9 @@
 version: '3.4'
 
 services:
-  FrameUPWebpp:
-    image: FrameUPWebpp
-    container_name: FrameUPWebpp
+  frame-up-webapp:
+    image: frame-up-webapp
+    container_name: frame-up-webapp
     restart: always
     build:
       context: .
