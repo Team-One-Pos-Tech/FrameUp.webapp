@@ -1,16 +1,8 @@
 import { Injectable } from "@angular/core";
-import { ApiAuthenticationV1SigninPostRequest, AuthenticationApi } from "../identity-api/apis/AuthenticationApi";
+import { ApiAuthenticationV1SigninPostRequest, ApiAuthenticationV1SignupPostRequest, AuthenticationApi } from "../identity-api/apis/AuthenticationApi";
 import ApiClientFactory from "../../services/api.client.factory";
 import { environment } from "../../../environment";
-import { SignInResponse } from "../identity-api";
-
-export class LoginModel {
-    username: string;
-
-    constructor(username: string) {
-        this.username = username;
-    }
-}
+import { RegisterClientRequest, SignInResponse } from "../identity-api";
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +14,7 @@ export default class AuthRepository {
         this.apiFactory = new ApiClientFactory<AuthenticationApi>(AuthenticationApi);
     }
 
-    async signin(loginModel: LoginModel): Promise<signinResponse> {
+    async signin(loginModel: LoginModel): Promise<AuthResponse> {
         let authenticationApi = await this.apiFactory.createInstance(environment.identityApiUrl);
 
         let request = <ApiAuthenticationV1SigninPostRequest>{
@@ -40,17 +32,58 @@ export default class AuthRepository {
         };
     }
 
+    async signup(singupModel: SingUpModel) {
+        let authenticationApi = await this.apiFactory.createInstance(environment.identityApiUrl);
+
+        let request = <ApiAuthenticationV1SignupPostRequest>{
+            registerClientRequest: <RegisterClientRequest>{
+                cpf: singupModel.username,
+                email: singupModel.email,
+                name: singupModel.name
+            }
+        }
+
+        try {
+            let response = await authenticationApi.apiAuthenticationV1SignupPost(request);
+            
+            return {
+                apiKey: null,
+                isValid: response.isValid ?? false,
+                message: this.getNotifications(response)
+            };
+        } catch (error) {
+            return {
+                isValid: false,
+            };
+        }
+
+    }
+
     private getNotifications(response: SignInResponse): string {
-        if(response.notifications?.length != undefined &&  response.notifications?.length > 0) {
-            response.notifications?.[0].message;
+        if(response.notifications != undefined && response.notifications?.length > 0) {
+            return response.notifications?.[0].message as string;
         }
 
         return '';
     }
 }
 
-export interface signinResponse {
+export interface AuthResponse {
     apiKey: string | null | undefined;
     isValid: boolean;
     message: string;
+}
+
+export class LoginModel {
+    username: string;
+
+    constructor(username: string) {
+        this.username = username;
+    }
+}
+
+export interface SingUpModel {
+    username: string;
+    name: string;
+    email: string;
 }
