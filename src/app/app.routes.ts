@@ -3,6 +3,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './services/auth.guard';
 import { SignupComponent } from './pages/signup/signup.component';
+import { CreateOrderComponent } from './components/create-order/create-order.component';
 
 export const routes: Routes = [
     {
@@ -14,6 +15,11 @@ export const routes: Routes = [
         path: 'signup',
         component: SignupComponent,
         title: 'SignUp Page'
+    },
+    {
+        path: 'create-order',
+        component: CreateOrderComponent,
+        title: 'Create Order Page'
     },
     {
         path: '',

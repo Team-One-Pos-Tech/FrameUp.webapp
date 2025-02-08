@@ -1,0 +1,17 @@
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="captureInterval">Capture Interval</label>
+        <input id="captureInterval" formControlName="captureInterval" type="number">
+    </div>
+    <div>
+        <label for="exportResolution">Export Resolution</label>
+        <select id="exportResolution" formControlName="exportResolution">
+            <option *ngFor="let resolution of resolutionTypes" [value]="resolution">{{ resolution }}</option>
+        </select>
+    </div>
+    <div>
+        <label for="videos">Videos</label>
+        <input id="videos" type="file" (change)="onFileSelected($event)" multiple>
+    </div>
+    <button type="submit">Create Order</button>
+</form>
