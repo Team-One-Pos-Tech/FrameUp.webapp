@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { ApiAuthenticationV1SigninPostRequest, AuthenticationApi } from "../identity-api/apis/AuthenticationApi";
 import ApiClientFactory from "../../services/api.client.factory";
 import { environment } from "../../../environment";
+import { SignInResponse } from "../identity-api";
 
 export class LoginModel {
     username: string;
@@ -35,8 +36,16 @@ export default class AuthRepository {
         return {
             apiKey: response.idToken,
             isValid: response.isValid ?? false,
-            message: response.notifications?.[0].message ?? ''
+            message: this.getNotifications(response)
         };
+    }
+
+    private getNotifications(response: SignInResponse): string {
+        if(response.notifications?.length != undefined &&  response.notifications?.length > 0) {
+            response.notifications?.[0].message;
+        }
+
+        return '';
     }
 }
 

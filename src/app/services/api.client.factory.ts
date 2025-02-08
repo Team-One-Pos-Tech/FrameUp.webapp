@@ -18,7 +18,7 @@ export default class ApiClientFactory<T> {
         const config = new Configuration({
             basePath: baseUrl,
             headers: {
-                'Authorization': 'Bearer ' + user.apiKey,
+                'Authorization': 'Bearer ' + user?.apiKey,
             }
         });
 

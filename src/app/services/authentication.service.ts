@@ -1,3 +1,5 @@
+import { Injectable } from "@angular/core";
+
 export interface CurrentUser {
     id: number;
     username: string;
@@ -5,13 +7,18 @@ export interface CurrentUser {
     apiKey: string;
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export default class AuthenticationService {
-    getCurrentUser() : CurrentUser{
-        return <CurrentUser>{
-            id: 1,
-            username: 'admin',
-            email: ''
-        };
+    currentUser: CurrentUser | null = null;
+
+    getCurrentUser() : CurrentUser | null {
+        return this.currentUser;
+    }
+
+    setCurrentUser(user: CurrentUser) {
+        this.currentUser = user;
     }
   
 }
