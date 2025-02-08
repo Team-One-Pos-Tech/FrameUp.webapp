@@ -10,7 +10,6 @@ import { environment } from '../environments/environment.development';
 })
 export class AppComponent {
   constructor() {
-    console.log(environment.production);
     console.log(`${environment.production ? 'Production' : 'Development'} mode`);
   }
 }
