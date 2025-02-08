@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  FrameUPWebpp:
+    image: FrameUPWebpp
+    container_name: FrameUPWebpp
+    restart: always
+    build:
+      context: .
+      dockerfile: ./src/Dockerfile
+    ports:
+      - "42048:80"
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
