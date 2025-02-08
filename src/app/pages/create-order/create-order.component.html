@@ -1,28 +1,35 @@
-<app-header></app-header>
+<div>
+    <app-header></app-header>
 
-<form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
-    <div class="mb-4">
-        <label for="captureInterval" class="block text-gray-700 text-sm font-bold mb-2">Capture Interval</label>
-        <input id="captureInterval" formControlName="captureInterval" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    <div class="flex space-x-5 items-center bg-light p-4 rounded pb-10">
+        <h1 class="text-3xl font-semibold">Create Order</h1>
     </div>
-    <div class="mb-4">
-        <label for="exportResolution" class="block text-gray-700 text-sm font-bold mb-2">Export Resolution</label>
-        <select id="exportResolution" formControlName="exportResolution" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <option *ngFor="let resolution of resolutionTypes" [value]="resolution">{{ resolution }}</option>
-        </select>
-    </div>
-    <div class="mb-4">
-        <label for="videos" class="block text-gray-700 text-sm font-bold mb-2">Videos</label>
-        <input id="videos" type="file" (change)="onFileSelected($event)" multiple class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-    </div>
-    <button 
-    type="submit" 
-    [disabled]="uploading" 
-    [ngClass]="{'bg-gray-500': uploading, 'bg-blue-500 hover:bg-blue-700': !uploading}" 
-    class="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-        <span *ngIf="!uploading">Create Order</span>
-        <span *ngIf="uploading">Uploading...</span>
-    </button>
 
-    
-</form>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-4">
+            <label for="captureInterval" class="block text-gray-700 text-sm font-bold mb-2">Capture Interval</label>
+            <input id="captureInterval" formControlName="captureInterval" type="number"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label for="exportResolution" class="block text-gray-700 text-sm font-bold mb-2">Export Resolution</label>
+            <select id="exportResolution" formControlName="exportResolution"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option *ngFor="let resolution of resolutionTypes" [value]="resolution">{{ resolution }}</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="videos" class="block text-gray-700 text-sm font-bold mb-2">Videos</label>
+            <input id="videos" type="file" (change)="onFileSelected($event)" multiple
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <button type="submit" [disabled]="uploading"
+            [ngClass]="{'bg-gray-500': uploading, 'bg-blue-500 hover:bg-blue-700': !uploading}"
+            class="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <span *ngIf="!uploading">Create Order</span>
+            <span *ngIf="uploading">Uploading...</span>
+        </button>
+
+
+    </form>
+</div>
