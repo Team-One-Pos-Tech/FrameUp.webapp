@@ -16,6 +16,8 @@ export class CreateOrderComponent {
 
   resolutionTypes = Object.values(ResolutionTypes).filter(value => typeof value === 'string');
 
+  uploading = false;
+
   orderForm = new FormGroup({
     captureInterval: new FormControl(0),
     exportResolution: new FormControl(ResolutionTypes.FullHD),
@@ -34,13 +36,24 @@ export class CreateOrderComponent {
   }
 
   async onSubmit() {
+    this.uploading = true;
+
     var orderRequest = new CreateOrderRequest()
 
     orderRequest.captureInterval = this.orderForm.value.captureInterval ?? 0;
     orderRequest.exportResolution = this.orderForm.value.exportResolution ?? ResolutionTypes.FullHD;
     orderRequest.videos = this.orderForm.value.videos ?? [];
 
-    await this.orderRepository.createOrder(orderRequest);
+    const response = await this.orderRepository.createOrder(orderRequest);
+
+    if (!response) {
+      alert('Failed to create order');
+      this.uploading = false;
+
+      return;
+    } 
+    
+    this.uploading = false;
 
     this.router.navigate(['']);
   }

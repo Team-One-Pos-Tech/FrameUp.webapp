@@ -39,15 +39,23 @@ export default class OrderRepository {
         ));
     }
 
-    async createOrder(createOrder: CreateOrderRequest) {
+    async createOrder(createOrder: CreateOrderRequest): Promise<boolean> {
         let orderApi = await this.apiFactory.createInstance(environment.orderApiUrl);
 
-        var response = await orderApi.orderPost(<OrderPostRequest>{
+        let request = <OrderPostRequest>{
             captureInterval: createOrder.captureInterval,
             exportResolution: createOrder.exportResolution,
             videos: createOrder.videos.map((video) => new Blob([video], { type: video.type })),
-        })
+        };
 
-        console.log(response);
+        try {
+            await orderApi.orderPost(request);
+
+            return true;
+        } catch (error) {
+            console.log(error);
+
+            return false;
+        }
     }
 }
