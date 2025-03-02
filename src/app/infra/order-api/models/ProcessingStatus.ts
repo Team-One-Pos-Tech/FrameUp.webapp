@@ -19,6 +19,8 @@
  */
 export const ProcessingStatus = {
     Refused: 'Refused',
+    Received: 'Received',
+    Uploading: 'Uploading',
     Processing: 'Processing',
     Concluded: 'Concluded',
     Canceled: 'Canceled',
