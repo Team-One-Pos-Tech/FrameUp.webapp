@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    identityApiUrl: 'http://svc-identity-app:5001/',
-    orderApiUrl: 'http://svc-order-service:5003/'
-};
+    identityApiUrl: 'https://identity-service-fdfnd0dmfgatbzat.brazilsouth-01.azurewebsites.net/',
+    orderApiUrl: 'https://order-service-br-eebua3cgb4ggdjgn.brazilsouth-01.azurewebsites.net/'
+}
